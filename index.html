@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Register — Sky Reign LAN</title>
+<style>
+  :root {
+    --bg: #0d0f18;
+    --panel: #161a27;
+    --panel-2: #1d2233;
+    --line: #2a3145;
+    --text: #e8ebf5;
+    --muted: #98a0b8;
+    --accent: #6c5ce7;
+    --accent-hot: #8b7cff;
+    --ok: #2ecc71;
+    --err: #ff5c6c;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: radial-gradient(1000px 600px at 50% -10%, #1e2136 0%, var(--bg) 60%);
+    color: var(--text);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+    padding: 32px 16px 64px;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  header { text-align: center; margin-bottom: 28px; }
+  .kicker {
+    text-transform: uppercase; letter-spacing: .18em; font-size: 12px;
+    color: var(--accent-hot); font-weight: 700;
+  }
+  h1 { margin: 8px 0 6px; font-size: clamp(28px, 5vw, 40px); }
+  .meta { color: var(--muted); font-size: 15px; }
+  form, .notice {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 24px;
+    margin-top: 24px;
+  }
+  fieldset { border: 0; margin: 0 0 26px; padding: 0; }
+  legend {
+    font-size: 12px; text-transform: uppercase; letter-spacing: .14em;
+    color: var(--muted); font-weight: 700; padding: 0 0 12px;
+  }
+  .grid { display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
+  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+  .full { grid-column: 1 / -1; }
+  label { display: block; font-size: 14px; margin-bottom: 6px; color: var(--muted); }
+  .req::after { content: " *"; color: var(--accent-hot); }
+  input, select, textarea {
+    width: 100%; padding: 11px 12px;
+    background: var(--panel-2); color: var(--text);
+    border: 1px solid var(--line); border-radius: 9px;
+    font: inherit;
+  }
+  input:focus, select:focus, textarea:focus {
+    outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent;
+  }
+  textarea { resize: vertical; min-height: 76px; }
+  .check { display: flex; gap: 10px; align-items: flex-start; }
+  .check input { width: auto; margin-top: 3px; }
+  .check label { margin: 0; color: var(--text); }
+  button {
+    width: 100%; padding: 14px; margin-top: 4px;
+    background: var(--accent); color: #fff;
+    border: 0; border-radius: 10px;
+    font: 700 16px/1 inherit; cursor: pointer;
+  }
+  button:hover:not(:disabled) { background: var(--accent-hot); }
+  button:disabled { opacity: .55; cursor: not-allowed; }
+  .msg { margin-top: 16px; padding: 13px 15px; border-radius: 9px; font-size: 15px; display: none; }
+  .msg.show { display: block; }
+  .msg.ok { background: rgba(46,204,113,.12); border: 1px solid var(--ok); color: var(--ok); }
+  .msg.err { background: rgba(255,92,108,.12); border: 1px solid var(--err); color: var(--err); }
+  .hint { color: var(--muted); font-size: 13px; margin-top: 6px; }
+  .notice { text-align: center; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <!-- ── EDIT THESE THREE LINES PER TOURNAMENT ────────────────── -->
+    <div class="kicker">Sky Reign LAN</div>
+    <h1>Winter Clash 2026</h1>
+    <p class="meta">12–13 September 2026 · Bengaluru · 5v5</p>
+    <!-- ─────────────────────────────────────────────────────────── -->
+  </header>
+
+  <div id="closed" class="notice" hidden>
+    <h2 style="margin:0 0 8px">Registration is closed</h2>
+    <p class="meta" style="margin:0">Follow our socials for the next event.</p>
+  </div>
+
+  <form id="form" novalidate>
+    <fieldset>
+      <legend>Team</legend>
+      <div class="grid">
+        <div>
+          <label class="req" for="team_name">Team name</label>
+          <input id="team_name" name="team_name" required maxlength="60">
+        </div>
+        <div>
+          <label class="req" for="team_tag">Team tag</label>
+          <input id="team_tag" name="team_tag" required maxlength="6" placeholder="e.g. SKY">
+        </div>
+        <div class="full">
+          <label class="req" for="game">Game</label>
+          <select id="game" name="game" required>
+            <option value="">Select a game…</option>
+            <option>Valorant</option>
+            <option>CS2</option>
+            <option>BGMI</option>
+            <option>Dota 2</option>
+            <option>EA FC</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Captain</legend>
+      <div class="grid">
+        <div>
+          <label class="req" for="captain_name">Full name</label>
+          <input id="captain_name" name="captain_name" required maxlength="80">
+        </div>
+        <div>
+          <label class="req" for="captain_email">Email</label>
+          <input id="captain_email" name="captain_email" type="email" required>
+        </div>
+        <div>
+          <label class="req" for="captain_phone">Phone</label>
+          <input id="captain_phone" name="captain_phone" type="tel" required maxlength="20">
+        </div>
+        <div>
+          <label class="req" for="discord_id">Discord ID</label>
+          <input id="discord_id" name="discord_id" required maxlength="40">
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Roster</legend>
+      <div class="grid">
+        <div><label class="req" for="player_1">Player 1 (captain)</label><input id="player_1" name="player_1" required maxlength="60"></div>
+        <div><label class="req" for="player_2">Player 2</label><input id="player_2" name="player_2" required maxlength="60"></div>
+        <div><label class="req" for="player_3">Player 3</label><input id="player_3" name="player_3" required maxlength="60"></div>
+        <div><label class="req" for="player_4">Player 4</label><input id="player_4" name="player_4" required maxlength="60"></div>
+        <div><label class="req" for="player_5">Player 5</label><input id="player_5" name="player_5" required maxlength="60"></div>
+        <div><label for="substitute">Substitute</label><input id="substitute" name="substitute" maxlength="60"></div>
+        <div class="full">
+          <label for="notes">Anything we should know?</label>
+          <textarea id="notes" name="notes" maxlength="500"></textarea>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="check">
+      <input id="agreed_rules" name="agreed_rules" type="checkbox" required>
+      <label for="agreed_rules">All players are available on both event days and agree to the tournament rules.</label>
+    </div>
+
+    <button id="submit" type="submit">Register team</button>
+    <p class="hint">You'll get a confirmation email once we verify your roster.</p>
+
+    <div id="msg" class="msg" role="status" aria-live="polite"></div>
+  </form>
+
+</div>
+
+<script>
+// ── CONFIG ───────────────────────────────────────────────────────
+// Flip to false to close registration; the form is replaced by a notice.
+const REGISTRATION_OPEN = true;
+
+// From Supabase → Project Settings → API. The anon key is safe to ship:
+// the table policy (see supabase-setup.sql) allows insert only, never read.
+const SUPABASE_URL = "https://YOUR-PROJECT.supabase.co";
+const SUPABASE_ANON_KEY = "YOUR-ANON-KEY";
+// ─────────────────────────────────────────────────────────────────
+
+const form = document.getElementById("form");
+const msg = document.getElementById("msg");
+const submit = document.getElementById("submit");
+
+if (!REGISTRATION_OPEN) {
+  form.hidden = true;
+  document.getElementById("closed").hidden = false;
+}
+
+function show(text, kind) {
+  msg.textContent = text;
+  msg.className = "msg show " + kind;
+}
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  if (!form.reportValidity()) return;
+
+  const data = Object.fromEntries(new FormData(form));
+  data.agreed_rules = form.agreed_rules.checked;
+
+  submit.disabled = true;
+  submit.textContent = "Submitting…";
+  msg.className = "msg";
+
+  try {
+    const res = await fetch(SUPABASE_URL + "/rest/v1/registrations", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "apikey": SUPABASE_ANON_KEY,
+        "Authorization": "Bearer " + SUPABASE_ANON_KEY,
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!res.ok) throw new Error(await res.text());
+
+    form.reset();
+    show("Registered. We've got your team — check your email for confirmation.", "ok");
+    submit.textContent = "Register team";
+    submit.disabled = false;
+  } catch (err) {
+    console.error(err);
+    show("Something went wrong. Please try again, or email us at hello@skyreign.gg.", "err");
+    submit.textContent = "Register team";
+    submit.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
