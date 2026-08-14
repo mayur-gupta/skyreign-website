@@ -1,53 +1,85 @@
-# Sky Reign — tournament registration
+# SkyReign Global — website
 
-A single-page registration form. Submissions land in a Supabase table; one
-script pulls them into an Excel file. No build step, no framework.
+Static marketing site for SkyReign Global and its event, **SRG Clutch Chapter 1**.
+Plain HTML, CSS and JavaScript — no framework, no build step. Open a page in a
+browser and it works.
 
-| File | What it is |
-| --- | --- |
-| `index.html` | The form. Open it, host it, done. |
-| `supabase-setup.sql` | Creates the table. Run once. |
-| `export-to-excel.py` | Writes `registrations.xlsx`. |
+## Pages
 
-## Setup (once)
+| File | Route | Purpose |
+| --- | --- | --- |
+| `index.html` | `/` | Home — brand intro, mission, featured event |
+| `about.html` | `/about` | Organization story, mission, vision, values |
+| `srg-clutch.html` | `/srg-clutch` | Full event page for SRG Clutch Chapter 1 |
+| `partners.html` | `/partners` | Partnership benefits, tiers and categories |
+| `contact.html` | `/contact` | Enquiry form and contact methods |
+| `privacy.html` / `terms.html` | | Legal placeholders (replace before launch) |
+| `srgclutchchapter1/bgmi.html` | `/srgclutchchapter1/bgmi` | Redirect → BGMI registration (Tally) |
+| `srgclutchchapter1/freefiremax.html` | `/srgclutchchapter1/freefiremax` | Redirect → Free Fire MAX registration (Tally) |
 
-1. **Create the table.** In your Supabase project → SQL Editor, paste
-   `supabase-setup.sql` and run it.
-2. **Wire up the form.** In Supabase → Project Settings → API, copy the
-   Project URL and the `anon` key into the CONFIG block near the bottom of
-   `index.html`.
-3. **Publish `index.html`.** Any static host works — Netlify, Vercel,
-   Cloudflare Pages, GitHub Pages. Drag the file in; there's nothing to build.
+Shared assets live in `assets/`: `css/styles.css` (design system),
+`js/main.js` (header, mobile nav, scroll reveal, contact form), and
+`icons.svg` (one SVG sprite referenced by every page).
 
-## Per tournament
+## Running it locally
 
-Edit the three marked lines at the top of `index.html` for the name, dates,
-and format. Update the `<option>` list under Game if the titles change.
+Because pages share an external CSS file and SVG sprite, open them through a
+web server rather than double-clicking the file (browsers block some requests
+on `file://`):
 
-**To close registration:** set `REGISTRATION_OPEN = false` in the CONFIG block
-and re-upload. The form is replaced by a "registration closed" notice.
-Set it back to `true` to reopen.
-
-## Getting the Excel sheet
-
-```
-pip install requests openpyxl
-set SUPABASE_URL=https://YOUR-PROJECT.supabase.co
-set SUPABASE_SERVICE_KEY=your-service-role-key
-python export-to-excel.py
+```bash
+python -m http.server 4173
 ```
 
-Produces `registrations.xlsx` — one row per team, newest last, with filters
-and a frozen header row. Re-run it any time for a fresh copy.
+Then visit <http://localhost:4173>. Any static server works.
 
-For a quick look without the script, Supabase → Table Editor → `registrations`
-→ Export as CSV opens fine in Excel.
+## Registration flow
 
-## A note on the two keys
+Team registration runs on **Tally**. Each "Register" button on the event page
+opens a short branded redirect page that forwards to the Tally form:
 
-The **anon** key is in `index.html` and is public by design. The table policy
-allows `insert` only and there is no `select` policy, so that key can add a
-registration but cannot read anyone's email or phone number back.
+- BGMI → `https://tally.so/r/81DVgY`
+- Free Fire MAX → `https://tally.so/r/GxEjQj`
 
-The **service_role** key is only for `export-to-excel.py`. It bypasses those
-rules. Keep it in your environment, never in the HTML, never committed.
+To change a form URL, edit the `target` in the matching redirect file *and* its
+`<meta http-equiv="refresh">` tag (the no-JavaScript fallback).
+
+## Contact form
+
+`contact.html` has no backend by default — on submit it opens the visitor's
+email client pre-filled to `connect@skyreignglobal.com`. To collect submissions
+automatically instead, set `data-endpoint` on the `<form id="enquiry-form">` to
+a URL that accepts a JSON `POST` (Formspree, a serverless function, etc.). The
+"Sponsorship" enquiry type reveals an extra Partnership-level field.
+
+## Deploying
+
+Upload the folder to any static host — Netlify, Vercel, Cloudflare Pages,
+GitHub Pages. There is nothing to compile. Point the domain at the host and
+serve over HTTPS. `sitemap.xml` and `robots.txt` are included; update the
+domain inside them if it is not `www.skyreignglobal.com`.
+
+## Before launch — checklist
+
+- [ ] Replace placeholder tournament copy only where marked (search `todo` /
+      "Placeholder"). Real copy is already in place everywhere else.
+- [ ] Add real logo and photography. The site ships **without** raster images
+      on purpose — see below. Slots are marked with dashed `.media` boxes.
+- [ ] Confirm the two Tally registration URLs are live.
+- [ ] Replace `privacy.html` and `terms.html` with legal-reviewed content.
+- [ ] Add an OpenGraph share image at each `og:image` path (or update the paths).
+- [ ] Verify all five social links resolve.
+
+## A note on images
+
+No game logos, hero photos or sponsor logos are bundled. Two reasons:
+
+1. **Copyright.** Free Fire MAX and BGMI artwork belongs to Garena and Krafton;
+   sponsor logos belong to sponsors. The handout is explicit about not using
+   these without permission. Add them once you have the rights and files.
+2. Everything visible today is CSS, text and inline SVG, so the site is fast
+   and has no broken-image icons. Where a photo belongs, there's a labelled
+   placeholder box telling you the intended size.
+
+Drop real images into `assets/img/` and swap the `.media` placeholders for
+`<img>` tags with descriptive `alt` text.

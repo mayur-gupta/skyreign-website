@@ -3,237 +3,433 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Register — Sky Reign LAN</title>
-<style>
-  :root {
-    --bg: #0d0f18;
-    --panel: #161a27;
-    --panel-2: #1d2233;
-    --line: #2a3145;
-    --text: #e8ebf5;
-    --muted: #98a0b8;
-    --accent: #6c5ce7;
-    --accent-hot: #8b7cff;
-    --ok: #2ecc71;
-    --err: #ff5c6c;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: radial-gradient(1000px 600px at 50% -10%, #1e2136 0%, var(--bg) 60%);
-    color: var(--text);
-    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    min-height: 100vh;
-    padding: 32px 16px 64px;
-  }
-  .wrap { max-width: 720px; margin: 0 auto; }
-  header { text-align: center; margin-bottom: 28px; }
-  .kicker {
-    text-transform: uppercase; letter-spacing: .18em; font-size: 12px;
-    color: var(--accent-hot); font-weight: 700;
-  }
-  h1 { margin: 8px 0 6px; font-size: clamp(28px, 5vw, 40px); }
-  .meta { color: var(--muted); font-size: 15px; }
-  form, .notice {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 24px;
-    margin-top: 24px;
-  }
-  fieldset { border: 0; margin: 0 0 26px; padding: 0; }
-  legend {
-    font-size: 12px; text-transform: uppercase; letter-spacing: .14em;
-    color: var(--muted); font-weight: 700; padding: 0 0 12px;
-  }
-  .grid { display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
-  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
-  .full { grid-column: 1 / -1; }
-  label { display: block; font-size: 14px; margin-bottom: 6px; color: var(--muted); }
-  .req::after { content: " *"; color: var(--accent-hot); }
-  input, select, textarea {
-    width: 100%; padding: 11px 12px;
-    background: var(--panel-2); color: var(--text);
-    border: 1px solid var(--line); border-radius: 9px;
-    font: inherit;
-  }
-  input:focus, select:focus, textarea:focus {
-    outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent;
-  }
-  textarea { resize: vertical; min-height: 76px; }
-  .check { display: flex; gap: 10px; align-items: flex-start; }
-  .check input { width: auto; margin-top: 3px; }
-  .check label { margin: 0; color: var(--text); }
-  button {
-    width: 100%; padding: 14px; margin-top: 4px;
-    background: var(--accent); color: #fff;
-    border: 0; border-radius: 10px;
-    font: 700 16px/1 inherit; cursor: pointer;
-  }
-  button:hover:not(:disabled) { background: var(--accent-hot); }
-  button:disabled { opacity: .55; cursor: not-allowed; }
-  .msg { margin-top: 16px; padding: 13px 15px; border-radius: 9px; font-size: 15px; display: none; }
-  .msg.show { display: block; }
-  .msg.ok { background: rgba(46,204,113,.12); border: 1px solid var(--ok); color: var(--ok); }
-  .msg.err { background: rgba(255,92,108,.12); border: 1px solid var(--err); color: var(--err); }
-  .hint { color: var(--muted); font-size: 13px; margin-top: 6px; }
-  .notice { text-align: center; }
-</style>
+<title>SkyReign Global | Rise. Compete. Reign.</title>
+<meta name="description" content="SkyReign Global creates esports tournaments, player opportunities and gaming communities for the next generation of competitive talent.">
+<link rel="canonical" href="https://www.skyreignglobal.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SkyReign Global">
+<meta property="og:title" content="SkyReign Global | Rise. Compete. Reign.">
+<meta property="og:description" content="SkyReign Global creates esports tournaments, player opportunities and gaming communities for the next generation of competitive talent.">
+<meta property="og:url" content="https://www.skyreignglobal.com/">
+<meta property="og:image" content="https://www.skyreignglobal.com/assets/img/og-home.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#050505">
+<link rel="stylesheet" href="assets/css/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "SkyReign Global",
+  "alternateName": "SRG",
+  "url": "https://www.skyreignglobal.com",
+  "email": "connect@skyreignglobal.com",
+  "slogan": "Rise. Compete. Reign.",
+  "sameAs": [
+    "https://www.instagram.com/skyreignglobal/",
+    "https://www.facebook.com/skyreignglobal/",
+    "https://discord.gg/VtwueCAWg9",
+    "https://www.threads.com/@skyreignglobal",
+    "https://x.com/skyreignglobal"
+  ]
+}
+</script>
 </head>
 <body>
-<div class="wrap">
 
-  <header>
-    <!-- ── EDIT THESE THREE LINES PER TOURNAMENT ────────────────── -->
-    <div class="kicker">Sky Reign LAN</div>
-    <h1>Winter Clash 2026</h1>
-    <p class="meta">12–13 September 2026 · Bengaluru · 5v5</p>
-    <!-- ─────────────────────────────────────────────────────────── -->
-  </header>
 
-  <div id="closed" class="notice" hidden>
-    <h2 style="margin:0 0 8px">Registration is closed</h2>
-    <p class="meta" style="margin:0">Follow our socials for the next event.</p>
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html">
+      <svg class="mark icon" style="color:var(--inferno)" aria-hidden="true"><use href="assets/icons.svg#i-logo"></use></svg>
+      Sky<em>Reign</em> Global
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+      <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-menu"></use></svg>
+    </button>
+
+    <nav id="primary-nav" class="nav" aria-label="Primary">
+      <a href="index.html" aria-current="page">Home</a>
+      <a href="about.html">About</a>
+      <a href="srg-clutch.html">SRG Clutch</a>
+      <a href="partners.html">Partners</a>
+      <a href="contact.html">Contact</a>
+      <a class="btn header-cta" href="https://discord.gg/VtwueCAWg9" target="_blank" rel="noopener">
+        <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-discord"></use></svg>
+        Join Discord
+      </a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- 1. Hero -->
+  <section class="hero center">
+    <div class="hexes" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="hero-inner">
+        <p class="eyebrow">Esports · India · Est. 2026</p>
+        <h1>We don't just play.<br><span class="accent">We reign.</span></h1>
+        <p class="lede">SkyReign Global is building competitive stages, powerful communities and unforgettable stories for the next generation of esports talent.</p>
+        <div class="btn-row">
+          <a class="btn" href="srg-clutch.html">
+            Explore SRG Clutch
+            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow"></use></svg>
+          </a>
+          <a class="btn ghost" href="https://discord.gg/VtwueCAWg9" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-discord"></use></svg>
+            Join Our Discord
+          </a>
+        </div>
+        <p class="hero-tag">Rise. Compete. Reign.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>SRG Clutch Chapter 1</span><span>India's Esports State Battle</span>
+      <span>Free Fire MAX &amp; BGMI</span><span>Two-Day LAN Grand Final</span><span>Indore</span>
+      <span>Where Seconds Become Stories</span>
+      <span>SRG Clutch Chapter 1</span><span>India's Esports State Battle</span>
+      <span>Free Fire MAX &amp; BGMI</span><span>Two-Day LAN Grand Final</span><span>Indore</span>
+      <span>Where Seconds Become Stories</span>
+    </div>
   </div>
 
-  <form id="form" novalidate>
-    <fieldset>
-      <legend>Team</legend>
-      <div class="grid">
-        <div>
-          <label class="req" for="team_name">Team name</label>
-          <input id="team_name" name="team_name" required maxlength="60">
+  <!-- 2. Mission -->
+  <section class="section" aria-labelledby="mission-h">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Our Mission</p>
+        <h2 id="mission-h">Giving emerging players a stage to be seen</h2>
+        <p class="lede">Gaming talent exists everywhere, but opportunity and recognition do not. SkyReign Global creates structured competitive experiences where emerging players can compete, build an identity, represent their communities and take meaningful steps toward becoming champions.</p>
+      </div>
+
+      <div class="grid c4 reveal">
+        <div class="card">
+          <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-search"></use></svg></div>
+          <h3>Discover</h3>
+          <p>Find emerging esports talent wherever it already exists.</p>
         </div>
-        <div>
-          <label class="req" for="team_tag">Team tag</label>
-          <input id="team_tag" name="team_tag" required maxlength="6" placeholder="e.g. SKY">
+        <div class="card">
+          <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-gamepad"></use></svg></div>
+          <h3>Compete</h3>
+          <p>Create credible competitive opportunities with real stakes.</p>
         </div>
-        <div class="full">
-          <label class="req" for="game">Game</label>
-          <select id="game" name="game" required>
-            <option value="">Select a game…</option>
-            <option>Valorant</option>
-            <option>CS2</option>
-            <option>BGMI</option>
-            <option>Dota 2</option>
-            <option>EA FC</option>
-          </select>
+        <div class="card">
+          <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-star"></use></svg></div>
+          <h3>Recognise</h3>
+          <p>Build player identity and recognition that lasts beyond a match.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-users"></use></svg></div>
+          <h3>Connect</h3>
+          <p>Bring communities, teams and creators into the same room.</p>
         </div>
       </div>
-    </fieldset>
 
-    <fieldset>
-      <legend>Captain</legend>
-      <div class="grid">
-        <div>
-          <label class="req" for="captain_name">Full name</label>
-          <input id="captain_name" name="captain_name" required maxlength="80">
-        </div>
-        <div>
-          <label class="req" for="captain_email">Email</label>
-          <input id="captain_email" name="captain_email" type="email" required>
-        </div>
-        <div>
-          <label class="req" for="captain_phone">Phone</label>
-          <input id="captain_phone" name="captain_phone" type="tel" required maxlength="20">
-        </div>
-        <div>
-          <label class="req" for="discord_id">Discord ID</label>
-          <input id="discord_id" name="discord_id" required maxlength="40">
+      <div class="card reveal" style="margin-top:22px">
+        <div style="display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap">
+          <div class="card-icon" style="margin:0"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-layers"></use></svg></div>
+          <div style="flex:1;min-width:260px">
+            <h3>Develop scalable event properties</h3>
+            <p>Online and offline competition formats designed to repeat, grow and travel — chapter after chapter.</p>
+          </div>
         </div>
       </div>
-    </fieldset>
+    </div>
+  </section>
 
-    <fieldset>
-      <legend>Roster</legend>
-      <div class="grid">
-        <div><label class="req" for="player_1">Player 1 (captain)</label><input id="player_1" name="player_1" required maxlength="60"></div>
-        <div><label class="req" for="player_2">Player 2</label><input id="player_2" name="player_2" required maxlength="60"></div>
-        <div><label class="req" for="player_3">Player 3</label><input id="player_3" name="player_3" required maxlength="60"></div>
-        <div><label class="req" for="player_4">Player 4</label><input id="player_4" name="player_4" required maxlength="60"></div>
-        <div><label class="req" for="player_5">Player 5</label><input id="player_5" name="player_5" required maxlength="60"></div>
-        <div><label for="substitute">Substitute</label><input id="substitute" name="substitute" maxlength="60"></div>
-        <div class="full">
-          <label for="notes">Anything we should know?</label>
-          <textarea id="notes" name="notes" maxlength="500"></textarea>
+  <!-- 3. What SkyReign builds -->
+  <section class="section carbon" aria-labelledby="build-h">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <p class="eyebrow">What We Build</p>
+        <h2 id="build-h">Four things we take seriously</h2>
+      </div>
+
+      <div class="grid c4 reveal">
+        <article class="card">
+          <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-trophy"></use></svg></div>
+          <h3>Competitive Events</h3>
+          <p>Online qualifiers, regional competitions and professional offline LAN experiences.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-star"></use></svg></div>
+          <h3>Player Recognition</h3>
+          <p>Stories, achievements and competitive moments that help emerging players become visible.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-users"></use></svg></div>
+          <h3>Gaming Community</h3>
+          <p>A place for players, teams, creators and fans to connect and grow together.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-handshake"></use></svg></div>
+          <h3>Brand Partnerships</h3>
+          <p>Authentic opportunities for brands to engage gaming audiences through content, experiences and participation.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Featured event -->
+  <section class="section" aria-labelledby="event-h"
+           style="background:radial-gradient(80% 100% at 50% 0%, rgba(0,212,255,.11), transparent 60%), linear-gradient(180deg,#0a1030,var(--jet) 70%)">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <p class="eyebrow cyan">Featured Event</p>
+        <h2 id="event-h">SRG Clutch — Chapter 1</h2>
+        <p class="lede" style="margin-inline:auto">India's Esports State Battle. An online-to-offline esports competition where emerging teams compete, qualify, represent their regions and earn an opportunity to perform at a professional two-day LAN Grand Final in Indore.</p>
+      </div>
+
+      <div class="stats cyan reveal">
+        <div class="stat">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-trophy"></use></svg>
+          <span class="value">₹8,00,000</span>
+          <span class="label">Prize Pool</span>
+        </div>
+        <div class="stat">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-gamepad"></use></svg>
+          <span class="value">2 Titles</span>
+          <span class="label">Free Fire MAX &amp; BGMI</span>
+        </div>
+        <div class="stat">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-calendar"></use></svg>
+          <span class="value">2 Days</span>
+          <span class="label">LAN Grand Final</span>
+        </div>
+        <div class="stat">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-pin"></use></svg>
+          <span class="value">Indore</span>
+          <span class="label">Host City</span>
         </div>
       </div>
-    </fieldset>
 
-    <div class="check">
-      <input id="agreed_rules" name="agreed_rules" type="checkbox" required>
-      <label for="agreed_rules">All players are available on both event days and agree to the tournament rules.</label>
+      <div class="btn-row center reveal" style="margin-top:34px">
+        <a class="btn cyan" href="srg-clutch.html">
+          View Event Details
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow"></use></svg>
+        </a>
+        <a class="btn ghost" href="contact.html?type=sponsorship">Partnership Enquiry</a>
+      </div>
+
+      <div class="note reveal" style="margin-top:34px;max-width:760px;margin-inline:auto">
+        <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-alert"></use></svg>
+        <p>Dates, participation numbers and venue details remain subject to final organizer confirmation.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Player journey -->
+  <section class="section carbon" aria-labelledby="journey-h">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <p class="eyebrow">Player Journey</p>
+        <h2 id="journey-h">From registration to recognition</h2>
+      </div>
+
+      <ol class="timeline journey reveal">
+        <li>
+          <span class="dot"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-clipboard"></use></svg></span>
+          <h3>Register</h3>
+          <p>Join the competition and begin your journey.</p>
+        </li>
+        <li>
+          <span class="dot"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-gamepad"></use></svg></span>
+          <h3>Compete</h3>
+          <p>Battle through structured online phases.</p>
+        </li>
+        <li>
+          <span class="dot"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-chart"></use></svg></span>
+          <h3>Qualify</h3>
+          <p>Top performers earn progression.</p>
+        </li>
+        <li>
+          <span class="dot"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-spotlight"></use></svg></span>
+          <h3>Perform</h3>
+          <p>Compete at the professional LAN stage.</p>
+        </li>
+        <li>
+          <span class="dot"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-sparkle"></use></svg></span>
+          <h3>Be Seen</h3>
+          <p>Gain recognition, identity and visibility.</p>
+        </li>
+      </ol>
+
+      <p class="reveal" style="text-align:center;margin-top:44px;font-family:var(--font-display);font-size:clamp(1.15rem,2.4vw,1.6rem);font-weight:800">
+        The game may be virtual. <span style="color:var(--inferno)">The opportunity should be real.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- 6. Community -->
+  <section class="section" aria-labelledby="community-h">
+    <div class="wrap">
+      <div class="discord-panel reveal">
+        <div class="split">
+          <div>
+            <p class="eyebrow">Community</p>
+            <h2 id="community-h">Enter the SkyReign community</h2>
+            <p class="muted">Connect with competitive players, gaming communities, creators and esports fans. Follow tournament announcements, event updates and the journey toward SRG Clutch Chapter 1.</p>
+            <div class="btn-row" style="margin-top:24px">
+              <a class="btn" href="https://discord.gg/VtwueCAWg9" target="_blank" rel="noopener">
+                <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-discord"></use></svg>
+                Join Discord
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h3 style="font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--steel-bright)">Follow us</h3>
+            <div class="social-row">
+              <a class="social-link" href="https://www.instagram.com/skyreignglobal/" target="_blank" rel="noopener">
+                <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-instagram"></use></svg>
+                <span>Instagram<small>@skyreignglobal</small></span>
+              </a>
+              <a class="social-link" href="https://www.facebook.com/skyreignglobal/" target="_blank" rel="noopener">
+                <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-facebook"></use></svg>
+                <span>Facebook<small>SkyReign Global</small></span>
+              </a>
+              <a class="social-link" href="https://www.threads.com/@skyreignglobal" target="_blank" rel="noopener">
+                <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-threads"></use></svg>
+                <span>Threads<small>@skyreignglobal</small></span>
+              </a>
+              <a class="social-link" href="https://x.com/skyreignglobal" target="_blank" rel="noopener">
+                <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-x"></use></svg>
+                <span>X<small>@skyreignglobal</small></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Partnership CTA -->
+  <section class="section carbon" aria-labelledby="partner-h">
+    <div class="wrap">
+      <div class="split">
+        <div class="reveal">
+          <p class="eyebrow">Partnerships</p>
+          <h2 id="partner-h">Build meaningful connections with India's gaming audience</h2>
+          <p class="muted">SkyReign Global offers partnership opportunities across digital campaigns, esports communities, creator-led content, event branding, product integration and live audience experiences.</p>
+          <div class="btn-row" style="margin-top:26px">
+            <a class="btn" href="partners.html">
+              Explore Partnerships
+              <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow"></use></svg>
+            </a>
+            <a class="btn ghost" href="contact.html">Contact SkyReign</a>
+          </div>
+        </div>
+
+        <div class="grid c2 reveal">
+          <div class="card"><div class="card-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-monitor"></use></svg></div><h3>Digital</h3><p>Announcements, match-day content and registration campaigns.</p></div>
+          <div class="card"><div class="card-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-sparkle"></use></svg></div><h3>Creator-Led</h3><p>Mentions, demos, challenges and backstage storytelling.</p></div>
+          <div class="card"><div class="card-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-spotlight"></use></svg></div><h3>On-Ground</h3><p>Stage branding, booths and product sampling at the LAN.</p></div>
+          <div class="card"><div class="card-icon"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-users"></use></svg></div><h3>Community</h3><p>Contests, fan voting and participation mechanics.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. News -->
+  <section class="section news" aria-labelledby="news-h">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <p class="eyebrow">Latest Updates</p>
+        <h2 id="news-h">News from the SkyReign world</h2>
+      </div>
+
+      <div class="grid c4 reveal">
+        <article class="card">
+          <div class="thumb"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-trophy"></use></svg></div>
+          <p class="tag">Tournament Updates</p>
+          <h3>Updates coming soon</h3>
+          <p>Match schedules, brackets and results will be posted here.</p>
+        </article>
+        <article class="card">
+          <div class="thumb"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-clipboard"></use></svg></div>
+          <p class="tag">Registration News</p>
+          <h3>Updates coming soon</h3>
+          <p>Registration windows and qualification details as they are confirmed.</p>
+        </article>
+        <article class="card">
+          <div class="thumb"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-users"></use></svg></div>
+          <p class="tag">Community Stories</p>
+          <h3>Updates coming soon</h3>
+          <p>Player journeys, team profiles and community highlights.</p>
+        </article>
+        <article class="card">
+          <div class="thumb"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-handshake"></use></svg></div>
+          <p class="tag">Partnership Announcements</p>
+          <h3>Updates coming soon</h3>
+          <p>New partners and collaborations, announced once confirmed.</p>
+        </article>
+      </div>
+
+      <div class="todo reveal" style="margin-top:26px">
+        <b>Placeholder:</b> these four cards are structural. Replace the copy and swap each
+        <code>.thumb</code> for a 400×300 image once the first updates are written.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="index.html">
+          <svg class="mark icon" style="color:var(--inferno)" aria-hidden="true"><use href="assets/icons.svg#i-logo"></use></svg>
+          Sky<em>Reign</em> Global
+        </a>
+        <p class="footer-tag">Rise. Compete. Reign.</p>
+        <p class="muted" style="font-size:.92rem;max-width:38ch">Turning underdogs into champions. Follow us on social media for tournament updates.</p>
+      </div>
+
+      <div>
+        <h4>Explore</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="srg-clutch.html">SRG Clutch</a></li>
+          <li><a href="partners.html">Partners</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Connect</h4>
+        <ul class="footer-links" style="margin-bottom:20px">
+          <li><a href="mailto:connect@skyreignglobal.com">connect@skyreignglobal.com</a></li>
+          <li><a href="https://discord.gg/VtwueCAWg9" target="_blank" rel="noopener">Join our Discord server</a></li>
+        </ul>
+        <div class="icon-row">
+          <a class="icon-btn" href="https://www.instagram.com/skyreignglobal/" target="_blank" rel="noopener" aria-label="SkyReign Global on Instagram"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-instagram"></use></svg></a>
+          <a class="icon-btn" href="https://www.facebook.com/skyreignglobal/" target="_blank" rel="noopener" aria-label="SkyReign Global on Facebook"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-facebook"></use></svg></a>
+          <a class="icon-btn" href="https://discord.gg/VtwueCAWg9" target="_blank" rel="noopener" aria-label="SkyReign Global on Discord"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-discord"></use></svg></a>
+          <a class="icon-btn" href="https://www.threads.com/@skyreignglobal" target="_blank" rel="noopener" aria-label="SkyReign Global on Threads"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-threads"></use></svg></a>
+          <a class="icon-btn" href="https://x.com/skyreignglobal" target="_blank" rel="noopener" aria-label="SkyReign Global on X"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-x"></use></svg></a>
+        </div>
+      </div>
     </div>
 
-    <button id="submit" type="submit">Register team</button>
-    <p class="hint">You'll get a confirmation email once we verify your roster.</p>
+    <div class="footer-bottom">
+      <p>© <span data-year>2026</span> SkyReign Global. All rights reserved.</p>
+      <nav aria-label="Legal">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+      </nav>
+    </div>
+  </div>
+</footer>
 
-    <div id="msg" class="msg" role="status" aria-live="polite"></div>
-  </form>
-
-</div>
-
-<script>
-// ── CONFIG ───────────────────────────────────────────────────────
-// Flip to false to close registration; the form is replaced by a notice.
-const REGISTRATION_OPEN = true;
-
-// From Supabase → Project Settings → API. The anon key is safe to ship:
-// the table policy (see supabase-setup.sql) allows insert only, never read.
-const SUPABASE_URL = "https://YOUR-PROJECT.supabase.co";
-const SUPABASE_ANON_KEY = "YOUR-ANON-KEY";
-// ─────────────────────────────────────────────────────────────────
-
-const form = document.getElementById("form");
-const msg = document.getElementById("msg");
-const submit = document.getElementById("submit");
-
-if (!REGISTRATION_OPEN) {
-  form.hidden = true;
-  document.getElementById("closed").hidden = false;
-}
-
-function show(text, kind) {
-  msg.textContent = text;
-  msg.className = "msg show " + kind;
-}
-
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  if (!form.reportValidity()) return;
-
-  const data = Object.fromEntries(new FormData(form));
-  data.agreed_rules = form.agreed_rules.checked;
-
-  submit.disabled = true;
-  submit.textContent = "Submitting…";
-  msg.className = "msg";
-
-  try {
-    const res = await fetch(SUPABASE_URL + "/rest/v1/registrations", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "apikey": SUPABASE_ANON_KEY,
-        "Authorization": "Bearer " + SUPABASE_ANON_KEY,
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (!res.ok) throw new Error(await res.text());
-
-    form.reset();
-    show("Registered. We've got your team — check your email for confirmation.", "ok");
-    submit.textContent = "Register team";
-    submit.disabled = false;
-  } catch (err) {
-    console.error(err);
-    show("Something went wrong. Please try again, or email us at hello@skyreign.gg.", "err");
-    submit.textContent = "Register team";
-    submit.disabled = false;
-  }
-});
-</script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>

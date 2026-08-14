@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /srgclutchchapter1/
+
+Sitemap: https://www.skyreignglobal.com/sitemap.xml
