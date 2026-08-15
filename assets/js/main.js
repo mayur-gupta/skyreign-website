@@ -74,6 +74,185 @@
     el.textContent = String(new Date().getFullYear());
   });
 
+  /* ---- Countdown ---- */
+  // Reads an ISO deadline from #countdown[data-deadline], ticks every second,
+  // zeroes out and stops once the deadline passes. Any page without the
+  // element is simply skipped.
+  (function () {
+    var el = document.getElementById("countdown");
+    if (!el) return;
+
+    var deadline = new Date(el.getAttribute("data-deadline")).getTime();
+    if (isNaN(deadline)) return;
+
+    var out = {
+      days: el.querySelector('[data-cd="days"]'),
+      hours: el.querySelector('[data-cd="hours"]'),
+      mins: el.querySelector('[data-cd="mins"]'),
+      secs: el.querySelector('[data-cd="secs"]'),
+    };
+
+    var pad = function (n) { return n < 10 ? "0" + n : String(n); };
+    var timer;
+
+    var tick = function () {
+      var diff = deadline - Date.now();
+      if (diff <= 0) {
+        out.days.textContent = out.hours.textContent = "00";
+        out.mins.textContent = out.secs.textContent = "00";
+        el.classList.add("ended");
+        clearInterval(timer);
+        return;
+      }
+      var s = Math.floor(diff / 1000);
+      out.days.textContent = pad(Math.floor(s / 86400));
+      out.hours.textContent = pad(Math.floor((s % 86400) / 3600));
+      out.mins.textContent = pad(Math.floor((s % 3600) / 60));
+      out.secs.textContent = pad(s % 60);
+    };
+
+    tick();
+    timer = setInterval(tick, 1000);
+  })();
+
+  /* ---- Slot capacity bars ---- */
+  // Animates each .capacity-fill to its data-fill percentage once the page
+  // has settled. Reduced motion just paints the final width.
+  (function () {
+    var bars = document.querySelectorAll(".capacity-fill");
+    if (!bars.length) return;
+
+    var paint = function () {
+      bars.forEach(function (bar) {
+        var pct = parseInt(bar.getAttribute("data-fill"), 10) || 0;
+        bar.style.width = Math.max(0, Math.min(100, pct)) + "%";
+      });
+    };
+
+    if (reduceMotion) paint();
+    else setTimeout(paint, 300);
+  })();
+
+  /* ---- Registration form ---- */
+  // Additional players BEYOND the captain: Free Fire renders players 2–5,
+  // BGMI players 2–4.
+  (function () {
+    var form = document.getElementById("regForm");
+    if (!form) return;
+
+    var ROSTER = { freefire: 4, bgmi: 3 };
+    var gameSelect = document.getElementById("game");
+    var wrap = document.getElementById("rosterWrap");
+
+    var rosterLabel = function (text) {
+      return '<p class="roster-head">' + text + "</p>";
+    };
+
+    var buildRoster = function (game) {
+      var count = ROSTER[game];
+      if (!count) {
+        wrap.innerHTML = rosterLabel("Squad roster") +
+          '<p class="hint">Select a game above to load roster slots.</p>';
+        return;
+      }
+
+      var total = count + 1;
+      var html = rosterLabel("Squad roster — " + total + " players (captain is player 1)");
+
+      for (var i = 2; i <= total; i++) {
+        html +=
+          '<div class="roster-slot">' +
+            "<h4>Player " + i + "</h4>" +
+            '<div class="field-row">' +
+              '<div class="field half">' +
+                '<label for="p' + i + 'name">Name</label>' +
+                '<input type="text" id="p' + i + 'name" name="p' + i + 'name" placeholder="Full name" required>' +
+                '<p class="field-error">Enter this player\'s name.</p>' +
+              "</div>" +
+              '<div class="field half">' +
+                '<label for="p' + i + 'ign">In-game ID</label>' +
+                '<input type="text" id="p' + i + 'ign" name="p' + i + 'ign" placeholder="IGN / UID" required>' +
+                '<p class="field-error">Enter this player\'s in-game ID.</p>' +
+              "</div>" +
+            "</div>" +
+          "</div>";
+      }
+      wrap.innerHTML = html;
+    };
+
+    var setInvalid = function (input, bad) {
+      var field = input.closest(".field");
+      if (field) field.classList.toggle("invalid", bad);
+    };
+
+    // Preselect the game from ?game=bgmi / ?game=freefire.
+    var preset = new URLSearchParams(window.location.search).get("game");
+    if (preset && ROSTER[preset]) {
+      gameSelect.value = preset;
+      buildRoster(preset);
+    }
+
+    gameSelect.addEventListener("change", function () {
+      buildRoster(gameSelect.value);
+    });
+
+    // Clear a field's error as soon as it's edited.
+    form.addEventListener("input", function (e) {
+      if (e.target.matches("input, select")) setInvalid(e.target, false);
+    });
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var ok = true;
+      var firstBad = null;
+
+      form.querySelectorAll("input[required], select[required]").forEach(function (input) {
+        if (input.type === "checkbox") return;
+
+        var val = input.value.trim();
+        var bad = false;
+
+        if (!val) bad = true;
+        else if (input.type === "email") bad = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+        else if (input.type === "tel") bad = !/^[6-9]\d{9}$/.test(val.replace(/\D/g, ""));
+
+        setInvalid(input, bad);
+        if (bad) { ok = false; if (!firstBad) firstBad = input; }
+      });
+
+      var age = document.getElementById("age");
+      var terms = document.getElementById("terms");
+      var consentError = document.getElementById("consentError");
+      var consentOk = age.checked && terms.checked;
+      consentError.classList.toggle("show", !consentOk);
+      if (!consentOk) { ok = false; if (!firstBad) firstBad = age; }
+
+      if (!ok) {
+        if (firstBad) firstBad.focus();
+        return;
+      }
+
+      var data = {};
+      new FormData(form).forEach(function (v, k) { data[k] = v; });
+      data.submittedAt = new Date().toISOString();
+
+      // No backend yet. When one exists, POST `data` to the registration
+      // endpoint here and only show success on a 2xx response. The server —
+      // not this file — must enforce duplicate, capacity and rate-limit
+      // checks and send the captain a confirmation email. Never place API
+      // keys or connection strings in this file.
+      console.log("Registration payload", data);
+
+      var success = document.getElementById("formSuccess");
+      success.classList.add("show");
+      var button = form.querySelector('button[type="submit"]');
+      button.textContent = "Registration submitted";
+      button.disabled = true;
+      success.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+    });
+  })();
+
   /* ---- Contact form ---- */
   var form = document.getElementById("enquiry-form");
   if (!form) return;

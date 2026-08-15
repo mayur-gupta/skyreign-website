@@ -56,6 +56,7 @@
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="srg-clutch.html" aria-current="page">SRG Clutch</a>
+      <a href="team.html">Team</a>
       <a href="partners.html">Partners</a>
       <a href="contact.html">Contact</a>
       <a class="btn header-cta" href="https://discord.gg/VtwueCAWg9" target="_blank" rel="noopener">
@@ -78,12 +79,20 @@
         <p class="lede" style="font-size:clamp(1.1rem,2vw,1.4rem);color:var(--white)">India's Esports State Battle</p>
         <p class="muted" style="margin-top:14px">Online Qualifiers • Offline Advancement • Two-Day LAN Grand Final • Indore</p>
         <div class="btn-row">
-          <a class="btn cyan" href="#register">
-            Get Event Updates
+          <a class="btn cyan" href="register.html">
+            Register Your Team
             <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow"></use></svg>
           </a>
           <a class="btn ghost" href="contact.html?type=sponsorship">Partnership Enquiry</a>
         </div>
+
+        <div class="countdown" id="countdown" data-deadline="2026-08-30T23:59:59+05:30">
+          <div class="cd-unit"><div class="cd-num" data-cd="days">--</div><div class="cd-label">Days</div></div>
+          <div class="cd-unit"><div class="cd-num" data-cd="hours">--</div><div class="cd-label">Hours</div></div>
+          <div class="cd-unit"><div class="cd-num" data-cd="mins">--</div><div class="cd-label">Minutes</div></div>
+          <div class="cd-unit"><div class="cd-num" data-cd="secs">--</div><div class="cd-label">Seconds</div></div>
+        </div>
+        <p class="muted" style="margin-top:14px;font-size:.86rem">Registration closes 30 August 2026.</p>
       </div>
     </div>
   </section>
@@ -183,6 +192,11 @@
             <div><b>~5,600</b><span>Players</span></div>
           </div>
           <p class="muted">Squad-based battle royale competition running through regional online qualifiers into the LAN Grand Final.</p>
+          <div class="capacity">
+            <div class="capacity-bar"><div class="capacity-fill" data-fill="34"></div></div>
+            <p class="capacity-text"><b>476</b> of 1,400 slots filled</p>
+          </div>
+          <a class="btn full" href="register.html?game=freefire">Register — Free Fire MAX</a>
         </article>
 
         <article class="game">
@@ -193,6 +207,11 @@
             <div><b>~3,200</b><span>Players</span></div>
           </div>
           <p class="muted">Battlegrounds Mobile India competition following the same online-to-offline progression toward Indore.</p>
+          <div class="capacity">
+            <div class="capacity-bar"><div class="capacity-fill" data-fill="41"></div></div>
+            <p class="capacity-text"><b>328</b> of 800 slots filled</p>
+          </div>
+          <a class="btn full" href="register.html?game=bgmi">Register — BGMI</a>
         </article>
       </div>
 
@@ -215,6 +234,8 @@
       <div class="todo reveal" style="margin-top:18px">
         <b>Asset note:</b> game logos and screenshots are deliberately omitted. Free Fire MAX and BGMI
         artwork is owned by Garena and Krafton — obtain written permission before adding it.
+        The "slots filled" counts on each card are placeholder demo values (<code>data-fill</code>
+        in the markup); wire them to real registration counts, or update them by hand.
       </div>
     </div>
   </section>
@@ -229,19 +250,12 @@
       </div>
 
       <div class="btn-row center reveal">
-        <a class="btn" href="srgclutchchapter1/bgmi.html">Register for BGMI</a>
-        <a class="btn" href="srgclutchchapter1/freefiremax.html">Register for Free Fire MAX</a>
+        <a class="btn" href="register.html?game=bgmi">Register for BGMI</a>
+        <a class="btn" href="register.html?game=freefire">Register for Free Fire MAX</a>
         <a class="btn ghost" href="https://discord.gg/VtwueCAWg9" target="_blank" rel="noopener">
           <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-discord"></use></svg>
           Join Discord for Updates
         </a>
-      </div>
-
-      <div class="todo reveal" style="margin-top:28px;max-width:760px;margin-inline:auto">
-        <b>How this works:</b> each button opens a short branded redirect page that forwards to the
-        official Tally registration form (BGMI &amp; Free Fire MAX). Update the Tally URLs inside
-        <code>srgclutchchapter1/bgmi.html</code> and <code>srgclutchchapter1/freefiremax.html</code>
-        if the forms ever change.
       </div>
     </div>
   </section>
@@ -430,7 +444,7 @@
     <div class="wrap" style="text-align:center">
       <h2 id="end-h" class="reveal">Where seconds become stories</h2>
       <div class="btn-row center reveal" style="margin-top:26px">
-        <a class="btn" href="#register">Register Your Team</a>
+        <a class="btn" href="register.html">Register Your Team</a>
         <a class="btn ghost" href="https://discord.gg/VtwueCAWg9" target="_blank" rel="noopener">
           <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-discord"></use></svg>
           Join Our Discord
@@ -459,6 +473,7 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="srg-clutch.html">SRG Clutch</a></li>
+          <li><a href="team.html">Team</a></li>
           <li><a href="partners.html">Partners</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
