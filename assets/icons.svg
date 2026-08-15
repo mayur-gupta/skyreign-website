@@ -4,7 +4,9 @@
      colour of whatever element contains them. -->
 <defs></defs>
 
-<symbol id="i-logo" viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10V6z"/><path d="M8 11l3 3 5-5"/></symbol>
+<!-- Brand emblem: a crown ("reign") over a peak ("sky"). Stroked so it takes
+     the brand badge's dark glyph colour set on .brand .mark. -->
+<symbol id="i-logo" viewBox="0 0 24 24"><path d="M3.6 16.2l-1.1-8.7 5.2 3.8L12 5l4.3 6.3 5.2-3.8-1.1 8.7z"/><path d="M3.9 19.4h16.2"/></symbol>
 <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
 <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></symbol>
 

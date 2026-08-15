@@ -46,8 +46,8 @@
 <header class="site-header">
   <div class="wrap header-inner">
     <a class="brand" href="index.html">
-      <svg class="mark icon" style="color:var(--inferno)" aria-hidden="true"><use href="assets/icons.svg#i-logo"></use></svg>
-      Sky<em>Reign</em> Global
+      <svg class="mark icon" aria-hidden="true"><use href="assets/icons.svg#i-logo"></use></svg>
+      <span class="brand-text"><span>Sky<em>Reign</em> Global</span><span class="brand-sub">Rule the Realm</span></span>
     </a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
       <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-menu"></use></svg>
@@ -230,13 +230,6 @@
         <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-alert"></use></svg>
         <p>Participation numbers are proposed planning figures from the event brief. They are not completed registrations, audited reach or guaranteed participation.</p>
       </div>
-
-      <div class="todo reveal" style="margin-top:18px">
-        <b>Asset note:</b> game logos and screenshots are deliberately omitted. Free Fire MAX and BGMI
-        artwork is owned by Garena and Krafton — obtain written permission before adding it.
-        The "slots filled" counts on each card are placeholder demo values (<code>data-fill</code>
-        in the markup); wire them to real registration counts, or update them by hand.
-      </div>
     </div>
   </section>
 
@@ -245,8 +238,12 @@
     <div class="wrap">
       <div class="section-head center reveal">
         <p class="eyebrow">Registration</p>
+        <span class="slots-badge reveal">
+          <span class="dot-pulse" aria-hidden="true"></span>
+          Limited slots — register before they're gone
+        </span>
         <h2 id="reg-h">Ready to compete?</h2>
-        <p class="lede" style="margin-inline:auto">Register your team and we'll confirm your roster by email before the online qualifiers begin.</p>
+        <p class="lede" style="margin-inline:auto">Free entry, and slots are limited across both titles. Register your team and we'll confirm your roster by email before the online qualifiers begin.</p>
       </div>
 
       <div class="btn-row center reveal">
@@ -256,13 +253,6 @@
           <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-discord"></use></svg>
           Join Discord for Updates
         </a>
-      </div>
-
-      <div class="todo reveal" style="margin-top:28px;max-width:760px;margin-inline:auto">
-        <b>How this works:</b> each button opens a short branded redirect page that forwards to the
-        official Tally registration form (BGMI &amp; Free Fire MAX). Update the Tally URLs inside
-        <code>srgclutchchapter1/bgmi.html</code> and <code>srgclutchchapter1/freefiremax.html</code>
-        if the forms ever change.
       </div>
     </div>
   </section>
@@ -468,7 +458,7 @@
     <div class="footer-grid">
       <div>
         <a class="brand" href="index.html">
-          <svg class="mark icon" style="color:var(--inferno)" aria-hidden="true"><use href="assets/icons.svg#i-logo"></use></svg>
+          <svg class="mark icon" aria-hidden="true"><use href="assets/icons.svg#i-logo"></use></svg>
           Sky<em>Reign</em> Global
         </a>
         <p class="footer-tag">Rise. Compete. Reign.</p>
