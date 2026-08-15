@@ -335,35 +335,7 @@ p:last-child { margin-bottom: 0; }
   margin-right: auto;
 }
 .brand:hover { color: var(--white); }
-
-/* Emblem badge: gradient tile with a dark crown glyph. The mark <svg> keeps
-   its .icon class, so we set the glyph colour here and paint the tile behind. */
-.brand .mark {
-  width: 38px; height: 38px;
-  flex: none;
-  padding: 8px;
-  border-radius: 10px;
-  color: #0d0d0d;                        /* crown stroke */
-  background: linear-gradient(135deg, var(--inferno), var(--flame));
-  box-shadow: 0 6px 18px rgba(255, 90, 0, 0.32);
-  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
-}
-.brand:hover .mark {
-  transform: translateY(-1px) rotate(-3deg);
-  box-shadow: 0 8px 22px rgba(255, 90, 0, 0.45);
-}
-
-/* Two-line wordmark lockup. */
-.brand-text { display: inline-flex; flex-direction: column; line-height: 1.05; }
-.brand-sub {
-  font-family: var(--font);
-  font-weight: 700;
-  font-size: 0.6rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--steel-bright);
-  margin-top: 3px;
-}
+.brand .mark { width: 34px; height: 34px; flex: none; }
 .brand em { font-style: normal; color: var(--inferno); }
 
 .nav { display: flex; align-items: center; gap: 4px; }
